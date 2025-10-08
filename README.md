@@ -2,7 +2,7 @@
 これは、Cobolアナライザー用のシンプルなSonarQubeプラグインの例です。本番環境では使用しないでください。
 
 インストール方法：
-1. お使いのSonarQubeインスタンスに同梱されているCOBOLアナライザーのバージョンを、このURLを使用して確認してください。 
+1. お使いのSonarQubeインスタンスに同梱されているCOBOLアナライザーのバージョンを、このURLを使用して確認してください。  
 ``http://<SONAR_HOST>:<SONAR_PORT>/api/plugins/installed``  
 最新の2025.5は、sonar-cobol-pluginバージョン `5.9.0.8697` と互換性があります。
 2. ローカル開発用にCOBOLアナライザーをダウンロードします。  
