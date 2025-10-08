@@ -3,8 +3,8 @@
 
 インストール方法：
 1. お使いのSonarQubeインスタンスに同梱されているCOBOLアナライザーのバージョンを、このURLを使用して確認してください。 
-http://<SONAR_HOST>:<SONAR_PORT>/api/plugins/installed  
-最新の2025.5は、sonar-cobol-pluginバージョン 5.9.0.8697 と互換性があります。
+``http://<SONAR_HOST>:<SONAR_PORT>/api/plugins/installed``  
+最新の2025.5は、sonar-cobol-pluginバージョン `5.9.0.8697` と互換性があります。
 2. ローカル開発用にCOBOLアナライザーをダウンロードします。  
 https://binaries.sonarsource.com/?prefix=CommercialDistribution/sonar-cobol-plugin/
 3. `pom.xml` を参照して、アナライザーを配置する場所を確認してください。
@@ -56,7 +56,7 @@ https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/languages/co
 
 
 ### What to look our for when developing the plugin
-- Make sure you change key, severity and name for each rule
+- Make sure you change the key, severity and name for each rule
 - There should be appropriate effort time needed for each rule remediation
 - You need to place a relevant html file (matching the key) into `src/main/resources` for the rule description
 - Use Junit and sample Cobol code to test locally with ``mvn test``
