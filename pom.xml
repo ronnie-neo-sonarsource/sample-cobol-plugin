@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.sonarsource.plugins.cobolexample</groupId>
+    <!-- it's recommended to follow the pattern "sonar-{key}-plugin", for example "sonar-myphp-plugin" -->
+    <artifactId>sonar-cobolexample-plugin</artifactId>
+    <version>0.1</version>
+    <name>Example Plugin to scan for Cobol</name>
+    <description>Custom Cobol rules for SonarQube</description>
+
+    <!-- this is important for sonar-packaging-maven-plugin -->
+    <packaging>sonar-plugin</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar.apiVersion>13.2.0.3137</sonar.apiVersion>
+        <sonarcobol.version>5.9.0.8697</sonarcobol.version>
+        <version.junit>4.13.1</version.junit>
+        <version.slf4j>2.0.17</version.slf4j>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.sonarsource.api.plugin</groupId>
+            <artifactId>sonar-plugin-api</artifactId>
+            <version>${sonar.apiVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sonarsource.cobol</groupId>
+            <artifactId>sonar-cobol-plugin</artifactId>
+            <version>${sonarcobol.version}</version>
+            <scope>system</scope>
+            <type>sonar-plugin</type>
+            <systemPath>${basedir}/lib/sonar-cobol-plugin-${sonarcobol.version}.jar</systemPath>
+        </dependency>
+
+        <!-- For JUnit tests -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${version.junit}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${version.slf4j}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${version.slf4j}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
+                <artifactId>sonar-packaging-maven-plugin</artifactId>
+                <version>1.23.0.740</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <!-- the entry-point class that extends org.sonar.api.SonarPlugin -->
+                    <pluginClass>org.sonarsource.plugins.cobolexample.CustomCobolCheck</pluginClass>
+                    <basePlugin>cobol</basePlugin>
+                    <archive>
+                        <manifest>
+                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                    </archive>
+                    <!-- advanced properties can be set here. See paragraph "Advanced Build Properties". -->
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.0</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
